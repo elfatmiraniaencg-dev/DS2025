@@ -1,30 +1,16 @@
 ## Predicting Loan Payback | Vault
-🧠 2025 Kaggle Playground Series – Loan Payback Prediction
+Prédiction de Remboursement de Prêts
 
-## Overview
+## 📊 Vue d'ensemble du projet
+Ce projet implémente une stratégie d'ensemble (blending) pour améliorer les prédictions de remboursement de prêts dans le cadre d'une compétition Kaggle. L'approche combine plusieurs modèles de machine learning avec des poids optimisés pour atteindre un score de 0.92775 sur le leaderboard (Rank #23).
 
-This dataset comes from the 2025 Kaggle Playground Series, a monthly challenge designed for practicing machine learning on approachable, synthetic tabular data.
-The task is to predict the probability that a borrower will pay back their loan.
+## 🎯 Objectif
+Prédire la probabilité qu'un emprunteur rembourse son prêt en utilisant une méthode de blending pondéré de plusieurs soumissions.
 
+## 🔧 Méthodologie
+Architecture de Blending
+Le système utilise une approche de weighted blending qui combine les prédictions de plusieurs modèles en appliquant des poids optimisés à chaque soumission. Cette technique d'ensemble learning permet de capitaliser sur les forces de différents modèles tout en minimisant leurs faiblesses individuelles.
 
-## Objective
-Build models to estimate the likelihood of loan repayment for each borrower in the test set.
-Submissions are scored using Area Under the ROC Curve (AUC ROC).
-
-## Dataset Format
-Target Variable: loan_paid_back (probability of repayment)
-
-Submission Format:
-  id,loan_paid_back
-  593994,0.5
-  593995,0.2
-  593996,0.1
-Evaluation Metric: ROC-AUC
-
-## Timeline
-Start: November 1, 2025
-End: November 30, 2025 (11:59 PM UTC)
-Notes
-The dataset is synthetically generated to mimic real-world loan behavior.
-Designed for lightweight experimentation with feature engineering and model blending.
-The best submissions from this competition will be used for blending and ensemble experiments.
+## Principe du Blending Pondéré
+Le blending pondéré consiste à calculer une moyenne pondérée des prédictions de plusieurs modèles. Chaque modèle reçoit un poids qui reflète sa performance relative et sa fiabilité. La prédiction finale est obtenue en combinant ces prédictions individuelles selon leurs poids respectifs, puis en normalisant le résultat.
+Configuration des Poidscompetition will be used for blending and ensemble experiments.
