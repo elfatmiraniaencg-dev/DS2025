@@ -215,16 +215,5 @@ Ce projet démontre l'efficacité d'une approche simple de blending pour atteind
 - [Ensemble Learning Methods](https://scikit-learn.org/stable/modules/ensemble.html)
 - [Model Blending Techniques](https://mlwave.com/kaggle-ensembling-guide/)
 
-## 👥 Contributeurs
 
-[Ajouter les noms des contributeurs]
 
-## 📄 License
-
-[Spécifier la license du projet]
-
----
-
-**Date de dernière mise à jour** : 26 Novembre 2025  
-**Version** : 1.0  
-**Statut** : Production
