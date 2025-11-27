@@ -21,16 +21,26 @@ Soumission 1 : Poids de 2.34 (représentant 88.6% d'influence)
 Soumission 2 : Poids de 0.30 (représentant 11.4% d'influence)
 
 Cette répartition asymétrique indique que le premier modèle est significativement plus performant et fiable que le second. Le deuxième modèle apporte néanmoins une diversité utile qui améliore la robustesse globale des prédictions.
-💻 Processus de Traitement
+
+## 💻 Processus de Traitement
+
 Étapes du Pipeline
 Le processus de blending se déroule en plusieurs étapes séquentielles :
+
 1. Chargement des données : Les fichiers de soumission CSV sont importés avec la bibliothèque pandas. Chaque fichier contient les identifiants des observations et leurs probabilités de remboursement prédites.
+
 2. Pondération des prédictions : Pour chaque soumission, une nouvelle colonne est créée contenant la prédiction multipliée par son poids associé. Cette opération permet de préparer les données pour la combinaison finale.
+
 3. Fusion des DataFrames : Les différentes soumissions sont fusionnées sur la colonne d'identifiant unique. Cette opération garantit que les prédictions de chaque modèle sont alignées pour les mêmes observations.
+
 4. Agrégation des prédictions pondérées : Les colonnes de prédictions pondérées sont additionnées pour obtenir une somme cumulée des contributions de chaque modèle.
+
 5. Normalisation : La somme des prédictions pondérées est divisée par la somme totale des poids. Cette étape assure que la prédiction finale reste dans l'intervalle de probabilité valide (entre 0 et 1).
+
 6. Export du résultat : Le DataFrame final, contenant les identifiants et les prédictions blendées, est exporté dans un fichier CSV prêt pour la soumission.
-📈 Résultats
+
+##📈 Résultats
+
 Performance
 
 Score Public Leaderboard : 0.92775
@@ -38,23 +48,36 @@ Rang : #23
 Métrique : [Préciser la métrique utilisée - AUC-ROC, Accuracy, etc.]
 
 Avantages de l'Approche
+
 Robustesse : Le blending réduit significativement la variance des prédictions en combinant plusieurs modèles. Chaque modèle peut commettre des erreurs différentes, et leur combinaison permet d'atténuer ces erreurs individuelles pour obtenir des prédictions plus stables.
+
 Simplicité : L'implémentation est claire, directe et facilement maintenable. Le processus ne nécessite que quelques étapes bien définies et peut être compris rapidement par d'autres développeurs.
+
 Flexibilité : Le système permet d'ajouter, retirer ou modifier facilement des modèles dans l'ensemble. Il suffit d'ajuster le dictionnaire des poids pour intégrer de nouvelles soumissions ou modifier l'importance relative des modèles existants.
+
 Performance compétitive : Avec un classement dans le top 25 du leaderboard, cette approche démontre son efficacité malgré sa relative simplicité par rapport à des techniques plus complexes.
-🔍 Analyse Technique
+
+## 🔍 Analyse Technique
+
 Gestion des Données
+
 Le processus de fusion des données utilise une jointure interne sur l'identifiant unique, garantissant que seules les observations présentes dans toutes les soumissions sont conservées. Lors de la fusion, des suffixes sont appliqués pour éviter les conflits de noms de colonnes. Si des colonnes dupliquées apparaissent, elles sont automatiquement combinées pour cumuler les prédictions pondérées, puis les colonnes redondantes sont supprimées pour maintenir un DataFrame propre.
+
 Normalisation
+
 La normalisation est une étape cruciale qui garantit la validité mathématique des prédictions. En divisant la somme des prédictions pondérées par la somme totale des poids, on s'assure que le résultat final reste dans l'intervalle de probabilité valide entre 0 et 1. Cette opération préserve également les proportions relatives définies par les poids initiaux.
-📦 Structure des Fichiers
+
+## 📦 Structure des Fichiers
+
 Format des Fichiers d'Entrée
+
 Chaque fichier de soumission doit être au format CSV et contenir exactement deux colonnes :
 
 id : Identifiant unique de l'observation (entier ou chaîne de caractères)
 loan_paid_back : Probabilité prédite de remboursement du prêt (valeur décimale entre 0 et 1)
 
 Format du Fichier de Sortie
+
 Le fichier de sortie généré conserve le même format que les fichiers d'entrée, avec les identifiants dans la première colonne et les probabilités blendées dans la seconde colonne. Ce format standardisé facilite la soumission directe aux plateformes de compétition.
 
 ## 🚀 Guide d'Utilisation
